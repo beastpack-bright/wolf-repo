@@ -16,12 +16,12 @@ namespace squash_the_bugs
         static void Main(string[] args)
         {
             // declare int counter
-            // int i = 0 = This is an error because it doesn't have the proper line ending of ;
+            // int i = 0 = Syntax error. This is an error because it doesn't have the proper line ending of ;
             int i = 0;
             // declare string to hold all numbers
             string allNumbers = null;
             // loop through the numbers 1 through 10
-            for (i = 1; i < 10; ++i)
+            for (i = 1; i < 11; i++) //i < 10 has been changed to i < 11 so that 10 is included in the values.
             {
 
                 // output explanation of calculation
@@ -31,7 +31,7 @@ namespace squash_the_bugs
                 // output the calculation based on the numbers
                 if (i == 1)
                 {
-                    Console.WriteLine("Impossible"); //This will fix the divide by zero error created by dividing 1 by 0 in the normal calculation, by checking if i is 1 and declaring its impossible.
+                    Console.WriteLine("Impossible"); //This will fix the divide by zero error created by dividing 1 by 0 in the normal calculation, by checking if i is 1 and declaring its impossible. RUNTIME ERROR.
                 }
                 else
                 {
@@ -43,7 +43,7 @@ namespace squash_the_bugs
                 allNumbers += i + " ";
 
                 // increment the counter
-                i = i + 1;
+                // i = i + 1; Logic error. This is already being done for the loop, meaning that it causes it to skip numbers. Commenting this out fixes the program.
             }
 
             // output all numbers which have been processed
