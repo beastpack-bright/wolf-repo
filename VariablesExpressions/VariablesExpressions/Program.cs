@@ -29,15 +29,7 @@ namespace VariablesExpressions
             Console.WriteLine(int1 * int2 * int3 * int4); //Multiplies the four values gained from the player and multiplies them together. Outputs the value.
 
 
-            //DELETE THESE. DELETE THESE. ONLY TESTS. NOT FOR MAIN PROJECT. REMEMBER. to make sure: 
-            //los woowoo
-            Console.WriteLine("test code here");
-
-            Console.WriteLine("Please enter a number with a decimal precision of 2.");
-            string input = Console.ReadLine();
-            double inputNumber = double.Parse(input);
-            inputNumber = inputNumber + 55.0;
-            Console.WriteLine(inputNumber);
+        
 
         }
     }
