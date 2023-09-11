@@ -20,7 +20,7 @@ namespace MyFirstWindowsFormsApp
             // let's use it to determine whether the houdiniPictureBox is visible
             this.houdiniPictureBox.Tag = true;
 
-            // set the URL of the houdiniPictureBox image location
+            // set the URL of the houdiniPictureBox image location 
             this.houdiniPictureBox.ImageLocation = "https://people.rit.edu/dxsigm/Houdini.jpg";
 
             // set the event handler when the mouse enters the PictureBox to call HoudiniPictureBox__MouseEnterLeave
