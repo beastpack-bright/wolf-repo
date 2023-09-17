@@ -76,9 +76,9 @@ namespace MadLibs
 
                 if (word[0] == '{')
                 {
-                    word = word.Replace("{", "").Replace("}", "").Replace("_", "");
+                    string replacementWord = word.Replace("{", "").Replace("}", "").Replace("_", "");
                     //Prompts user for a replacement word
-                    Console.Write("Input a {0}: ", word);
+                    Console.Write("Input a {0}: ", replacementWord);
                     //Adds the response into the string
                     finalStory += Console.ReadLine();
                 }
