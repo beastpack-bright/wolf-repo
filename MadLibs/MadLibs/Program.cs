@@ -13,7 +13,7 @@ namespace MadLibs
         {
             //Setting up starting variables
             int numLibs = 0;
-            int cntr = 0;
+            int cntr = 0; 
             int nChoice = 0;
             string finalStory = "";
             string resultString = "";
