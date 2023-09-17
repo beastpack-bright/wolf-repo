@@ -54,7 +54,7 @@ namespace MadLibs
                 try
                 {
                     nChoice = int.Parse(input.ReadLine());
-
+                    acceptableValue = true;
                 }
                 catch
                 {
