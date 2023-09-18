@@ -47,23 +47,23 @@ namespace MadLibs
             input.Close();
             //Prompting user for which they want to play. 
             bool acceptableValue = false;
-
             while (acceptableValue == false)
             {
                 Console.WriteLine("Which Mad Libs would you like to play? 1-" + numLibs);
+                string select = Console.ReadLine();
                 try
                 {
-                    if (nChoice >= numLibs)
+                    nChoice = int.Parse(select);
+                    if (nChoice > numLibs)
                     {
-                        Console.WriteLine("This isn't a permitted value.");
+                        Console.WriteLine("Not a permitted value.");
                         continue;
-                    }
-                    else
+                    } else
                     {
-                        nChoice = int.Parse(input.ReadLine());
-                        acceptableValue = true;
+                      acceptableValue = true;
                     }
-                    }
+                    
+                }
                 catch
                 {
                     Console.WriteLine("Please enter a proper number.");
@@ -73,27 +73,29 @@ namespace MadLibs
             }
 
 
-            string[] words = madLibs[nChoice].Split(' ');
+            string[] words = madLibs[nChoice-1].Split(' ');
 
             foreach (string word in words)
             {
 
                 if (word[0] == '{')
                 {
-                    string replacementWord = word.Replace("{", "").Replace("}", "").Replace("_", "");
+                    string replacementWord = word.Replace("{", "").Replace("}", "").Replace("_", " ");
                     //Prompts user for a replacement word
                     Console.Write("Input a {0}: ", replacementWord);
                     //Adds the response into the string
-                    finalStory += Console.ReadLine();
+                    finalStory += Console.ReadLine() + " ";
+
                 }
                 // else append word to the result string
                 else
                 {
-                    finalStory += word;
+                    finalStory += word + " ";
                 }
                 resultString = finalStory;
-
+                
             }
+            Console.WriteLine(finalStory);
         }
     }
 }
