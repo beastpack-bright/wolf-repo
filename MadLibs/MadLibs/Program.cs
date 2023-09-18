@@ -53,19 +53,23 @@ namespace MadLibs
                 Console.WriteLine("Which Mad Libs would you like to play? 1-" + numLibs);
                 try
                 {
-                    nChoice = int.Parse(input.ReadLine());
-                    acceptableValue = true;
-                }
+                    if (nChoice >= numLibs)
+                    {
+                        Console.WriteLine("This isn't a permitted value.");
+                        continue;
+                    }
+                    else
+                    {
+                        nChoice = int.Parse(input.ReadLine());
+                        acceptableValue = true;
+                    }
+                    }
                 catch
                 {
                     Console.WriteLine("Please enter a proper number.");
                     continue;
                 }
-                if (nChoice >= numLibs)
-                {
-                    Console.WriteLine("This isn't a permitted value.");
-                    continue;
-                }
+                
             }
 
 
