@@ -11,9 +11,12 @@ namespace ReplacementWord
         static void Main(string[] args)
         {
             Console.WriteLine("Enter a string, preferably containing the word 'no'");
-            string enteredString = Console.ReadLine();
-            var newString = enteredString.Replace("no", "yes");
-            Console.WriteLine(newString);
+            string s = Console.ReadLine();
+            s = s.Replace("no", "yes");
+            s = s.Replace("No", "Yes");
+            s = s.Replace("NO", "YES");
+            s = s.Replace("nO", "yES");
+            Console.WriteLine(s);
         }
     }
 }
