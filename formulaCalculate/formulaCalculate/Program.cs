@@ -17,7 +17,7 @@ namespace formulaCalculate
 
             int nX = 0;
             int nY = 0;
-
+             
             double[,,] zFunction = new double[1,2,3]; //The intervals between. 
 
             for (x = -1; x <= 1; x += 0.1, nX++) //The values being used for x.
