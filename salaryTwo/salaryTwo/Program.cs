@@ -10,14 +10,18 @@ namespace salaryRaise
 {
     static internal class Program
     {
-     
-
-        static bool GiveRaise(string name, ref double salary) //Checking whether or not the name would warrant in a raise.
+        struct Employee //Struct instead of parameters. 
         {
-            
-            if (name == "elizabeth") //Checking name
+            public string sName;
+            public double dSalary;
+        }
+
+        static bool GiveRaise(ref Employee employee) //Struct passed instead of parameters.
+        {
+
+            if (employee.sName == "elizabeth") //Checking name
             {
-                salary = salary + 19999.99; //If yes, adds money
+                employee.dSalary += 19999.99; //If yes, adds money
                 return true; //Returns true
             }
             else
@@ -27,11 +31,12 @@ namespace salaryRaise
         }
         static void Main(string[] args) //Main function.
         {
-            string sName; //Setting up variables.
-            double dSalary = 30000;
+            
+        Employee employee = new Employee();
+            employee.dSalary = 30000;
             Console.WriteLine("What is your name?"); //Asking for name
-            sName = Console.ReadLine();
-            bool raiseGranted = GiveRaise(sName, ref dSalary); //Passing values into the function
+            employee.sName = Console.ReadLine();
+            bool raiseGranted = GiveRaise(ref employee); //Passing values into the function
 
             if (raiseGranted) //Checking if raise was granted.
             {
@@ -43,9 +48,9 @@ namespace salaryRaise
             }
 
             //Updated salary goes here.
-            Console.WriteLine($"Your salary: {dSalary}");
+            Console.WriteLine($"Your salary: {employee.dSalary}");
         }
 
 
     }
-    }
+}
