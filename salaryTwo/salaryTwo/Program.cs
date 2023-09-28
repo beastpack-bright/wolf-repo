@@ -31,7 +31,7 @@ namespace salaryRaise
         }
         static void Main(string[] args) //Main function.
         {
-            
+           
         Employee employee = new Employee();
             employee.dSalary = 30000;
             Console.WriteLine("What is your name?"); //Asking for name
