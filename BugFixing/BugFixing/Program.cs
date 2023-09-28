@@ -67,7 +67,7 @@ namespace BugFixing
             }
 
             //returnVal; This doesn't actually return the value. Compile-time
-            return returnVal;
+            return returnVal; 
         }
     }
 }
