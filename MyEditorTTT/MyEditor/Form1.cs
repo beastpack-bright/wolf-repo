@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace MyEditor
 {
@@ -34,6 +35,9 @@ namespace MyEditor
             this.timesNewRomanToolStripMenuItem.Click += new EventHandler(TimesNewRomanToolStripMenuItem_Click);
 
             this.richTextBox.SelectionChanged += new EventHandler(RichTextBox_SelectionChanged);
+            this.testToolStripButton.Click += new EventHandler(TestToolStripButton_Click);
+            this.countdownLabel.Visible = false;
+            this.timer.Tick += new EventHandler(Timer_Tick);
 
             this.Text = "MyEditor"; //Default text. 
         }
@@ -59,6 +63,37 @@ namespace MyEditor
         }
         //This saves a file.
 
+        private void TestToolStripButton_Click(object sender, EventArgs e)
+        {
+            this.timer.Interval = 500;
+            this.toolStripProgressBar1.Value = 60;
+            this.countdownLabel.Text = "3";
+            this.countdownLabel.Visible = true;
+            this.richTextBox.Visible = false;
+
+            for (int i = 3; i > 0; --i)
+            {
+                this.countdownLabel.Text = i.ToString();
+                this.Refresh();
+                Thread.Sleep(1000);
+            }
+            this.countdownLabel.Visible = false;
+            this.richTextBox.Visible = true;
+
+            this.timer.Start();
+
+        }
+
+        private void Timer_Tick(Object sender, EventArgs e)
+        {
+            --this.toolStripProgressBar1.Value;
+            if (this.toolStripProgressBar1.Value == 0)
+            {
+                this.timer.Stop();
+                string performance = "Congrats! You typed " + Math.Round(this.richTextBox.TextLength / 30.0, 2) + " letters per second.";
+                MessageBox.Show(performance);
+            }
+        }
         private void MSSansSerifToolStripMenuItem_Click(Object sender, EventArgs e)
         {
             Font newfont = new Font("MS Sans Serif", richTextBox.SelectionFont.Size, richTextBox.SelectionFont.Style);
@@ -219,6 +254,21 @@ namespace MyEditor
         }
 
         private void toolStrip_ItemClicked_1(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void toolStripContainer1_TopToolStripPanel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void countdownLabel_Click(object sender, EventArgs e)
         {
 
         }
