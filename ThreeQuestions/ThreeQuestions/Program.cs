@@ -83,6 +83,8 @@ namespace ThreeQuestions
 
         static void TimerCallback(object state)
         {
+            Console.WriteLine("  _\r\n       / \\      _-'\r\n     _/|  \\-''- _ /\r\n__-' { |          \\\r\n    /             \\\r\n    /       \"o.  |o }\r\n    |            \\ ;\r\n                  ',\r\n       \\_         __\\\r\n         ''-_    \\.//\r\n           / '-____'\r\n          /\r\n        _'\r\n      _-'");
+            //ASCII wolf.
             Console.WriteLine("Out of time.");
         }
 
