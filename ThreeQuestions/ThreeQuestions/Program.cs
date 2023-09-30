@@ -9,9 +9,9 @@ namespace ThreeQuestions
     {
         static List<Question> questions = new List<Question>
         {
-            new Question("What is your favorite animal?", "wolf", "wolves"),
-            new Question("What is your favorite color?", "black", "wolf", "wolves"),
-            new Question("What is the answer to life, the universe, and everything?", "42", "wolves")
+            new Question("What is your favorite color?", "black"),
+            new Question("What is the answer to life, the universe, and everything?", "42"),
+            new Question("What is the airspeed velocity of an unladen swallow?", "What do you mean? African or European swallow?")
         };
 
         static void Main(string[] args)
@@ -57,16 +57,16 @@ namespace ThreeQuestions
                         {
                             if (selectedQuestion.Answer.Any(answer => userAnswer.ToLower() == answer.ToLower()))
                             {
-                                Console.WriteLine("Correct!");
+                                Console.WriteLine("Well done!");
                             }
                             else
                             {
-                                Console.WriteLine("No. The correct answer(s) is/are: " + string.Join(", ", selectedQuestion.Answer));
+                                Console.WriteLine("No. The correct answer(s) is: " + string.Join(", ", selectedQuestion.Answer));
                             }
                         }
                         else
                         {
-                            Console.WriteLine("Out of time. The correct answer(s) is/are: " + string.Join(", ", selectedQuestion.Answer));
+                            Console.WriteLine("Out of time. The correct answer(s) is: " + string.Join(", ", selectedQuestion.Answer));
                         }
                     }
                     else
@@ -83,9 +83,9 @@ namespace ThreeQuestions
 
         static void TimerCallback(object state)
         {
-            Console.WriteLine("  _\r\n       / \\      _-'\r\n     _/|  \\-''- _ /\r\n__-' { |          \\\r\n    /             \\\r\n    /       \"o.  |o }\r\n    |            \\ ;\r\n                  ',\r\n       \\_         __\\\r\n         ''-_    \\.//\r\n           / '-____'\r\n          /\r\n        _'\r\n      _-'");
-            //ASCII wolf.
+          
             Console.WriteLine("Out of time.");
+
         }
 
         class Question
