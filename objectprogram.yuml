@@ -1,0 +1,25 @@
+// {type: class}
+// {generate: true}
+// {direction: topDown}
+
+//class, setting up properties, then methods
+[A:HotDrink| |Milk:string;Sugar:string;+Drink(); +AddMilk();+AddSugar()|]
+//A:HotDrink starting the abstract class
+
+[+I:ICup|| Volume:double;Color:string;Refill();Wash() ]
+//Don't use + for public if not a class. Interface can be public. 
+
+[CupOfCoffee||Volume:double;Color:string;BeanType:string;Refill();Wash();  ]
+//Same properties as ICup if it supports it
+
+[CupOfTea||Volume:double;Color: string;LeafType:string;Refill();Wash();  ]
+//Same as CupOfCoffee
+
+[A:HotDrink] <-.- [CupOfCoffee]
+//<-.- used to show it derives from an abstract class
+[A:HotDrink] <-.- [CupOfTea]
+
+[+I:ICup]^[CupOfCoffee]
+[+I:ICup]^[CupOfTea]
+//Carrot ^ is used to show interface inheritance
+//Only first section needed, has to match exactly.
