@@ -1,54 +1,44 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Runtime.ConstrainedExecution;
-using System.Text;
-using System.Threading.Tasks;
-using VehicleClassLibrary; 
+using VehicleClassLibrary;
 
 namespace VehicleTraffic
 {
-    internal class Program
+    public class Program
     {
-            static void Main(string[] args)
+        static void Main(string[] args)
+        {
+            // Creating vehicle instances
+            Car car = new Car();
+            Train train = new Train();
+            Compact compact = new Compact();
+            PassengerTrain passengerTrain = new PassengerTrain();
+            // Trying to pass an object not in the interface
+            object wrongObject = new object(); //This object is not included!
+
+            // Calling AddPassenger
+            AddPassenger(car);
+            AddPassenger(train);
+            AddPassenger(compact);
+            AddPassenger(passengerTrain);
+            AddPassenger(wrongObject);
+        }
+
+        static void AddPassenger(object objectVehicle) //Adding passengers 
+        {
+            if (objectVehicle is IPassengerCarrier passengerCarrier)
             {
-                // Create instances of various vehicles from the Vehicles.dll assembly
-                Car car = new Car();
-                Train train = new Train();
-                Compact compactCar = new Compact();
-                PassengerTrain passengerTrain = new PassengerTrain();
+                // Callling LoadPassenger using reference
+                passengerCarrier.LoadPassenger();
+                Console.WriteLine(objectVehicle.ToString()); // string time
 
-                // Call the AddPassenger function and test with different objects
-                AddPassenger(car);
-                AddPassenger(train);
-                AddPassenger(compactCar);
-                AddPassenger(passengerTrain);
-
-                // Try passing an object that does not inherit the IPassengerCarrier interface
-                object nonPassengerObject = new object();
-                AddPassenger(nonPassengerObject);
-
-                Console.ReadLine();
+                Console.WriteLine();
             }
-
-            static void AddPassenger(object vehicleObject)
-            {
-                if (vehicleObject is IPassengerCarrier passengerCarrier)
-                {
-                    // Call the LoadPassenger method using the interface reference
-                    passengerCarrier.LoadPassenger();
-                    Console.WriteLine(vehicleObject.ToString()); // Calling ToString() method
-
-                    Console.WriteLine();
-                }
-                else
-                {
-                    Console.WriteLine("This object does not implement the IPassengerCarrier interface.");
-                }
+            else
+            { 
+                Console.WriteLine("Hey! This object isn't in the interface."); //If item not in interface
             }
         }
-    }
-}
     }
 }
