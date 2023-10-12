@@ -16,7 +16,7 @@ namespace Courses
             // Generate courses IGME-200 through IGME-299
             for (int i = 200; i < 300; ++i)
             {
-                // Use constructor to create a new course object with code and description
+                // Using constructor
                 thisCourse = new Course($"IGME-{i}", $"Description for IGME-{i}");
 
                 // Create a new Schedule object
@@ -73,7 +73,7 @@ namespace Courses
                 }
                 catch
                 {
-                    // Handle exceptions for duplicate key, if needed
+                    
                 }
             }
         }
