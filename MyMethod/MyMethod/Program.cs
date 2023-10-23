@@ -30,7 +30,7 @@ namespace MyMethod
         {
             public void myMethod()
             {
-                Console.WriteLine("Class2 implementing interface.");
+                Console.WriteLine("Class2 implementing interface."); 
             }
         }
         static void Main(string[] args)
