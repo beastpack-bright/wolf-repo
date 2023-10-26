@@ -110,17 +110,17 @@ namespace Classiest
         }
         public override void Steam()
         {
-            // Implement cocoa steaming logic
+            //Empty
         }
 
         public virtual void AddSugar(byte amount)
         {
-            // Implement sugar addition logic for cocoa
+            //Empty
         }
 
         public void TakeOrder()
         {
-            // Implement order-taking logic for cocoa
+            //Empty
         }
     }
 
