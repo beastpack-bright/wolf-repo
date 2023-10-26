@@ -38,12 +38,12 @@ namespace Classiest
 
         public HotDrink(string brand)
         {
-            // Constructor logic
+            //Empty
         }
 
         public void AddSugar(byte amount)
         {
-            // Implement sugar addition logic
+            //Empty
         }
         public abstract void Steam();
     }
@@ -72,17 +72,17 @@ namespace Classiest
         public CupOfTea(bool customerIsWealthy)
             : base("Tea Brand")
         {
-            // Constructor logic
+            //Empty
         }
 
         public void TakeOrder()
         {
-            // Implement order-taking logic
+            //Empty
         }
 
         public override void Steam()
         {
-            // Implement tea steaming logic
+            //Empty
         }
     }
     public class CupOfCocoa : HotDrink, ITakeOrder
