@@ -87,7 +87,7 @@ namespace Classiest
     }
     public class CupOfCocoa : HotDrink, ITakeOrder
     { 
-        public int NumCups { get; set; }
+        public int NumCups { get; set; } 
         public bool Marshmallows { get; set; }
         private string source;
 
