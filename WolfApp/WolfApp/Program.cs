@@ -72,7 +72,7 @@ namespace WolfClasses
 
     class Program
     {
-        static void MyMethod(object obj)
+        static void WolfMethod(object obj)
         {
             if (obj is Wolf wolf)
             {
@@ -104,10 +104,10 @@ namespace WolfClasses
                 age = 7
             };
 
-            MyMethod(greyWolf);   
+            WolfMethod(greyWolf);   
             Console.WriteLine();
 
-            MyMethod(timberWolf); 
+            WolfMethod(timberWolf); 
         }
     }
 
