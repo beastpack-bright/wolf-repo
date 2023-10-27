@@ -1,0 +1,28 @@
+// {type: class}
+// {generate: true}
+// {direction: topDown}
+
+// Abstract class 
+[A:Wolf| |name:string;age:int;+Sound():string;+Eat();+Sleep()|]
+
+// Prey class
+[A:WolfFood| |type:string;size:double;+RunAway()|]
+
+// Interfaces
+[+I:Hunt||+Hunt():string]
+[+I:Howl||+Howl():string]
+
+// Classes
+[GreyWolf||]
+[TimberWolf||]
+// Prey classes
+[Rabbit||]
+[Deer||]
+
+// Inheritance + Interface
+[A:Wolf] <-.- [GreyWolf]
+[A:Wolf] <-.- [TimberWolf]
+[A:WolfFood] <-.- [Rabbit]
+[A:WolfFood] <-.- [Deer]
+[A:Wolf]^[+I:Hunt]
+[A:Wolf]^[+I:Howl]
