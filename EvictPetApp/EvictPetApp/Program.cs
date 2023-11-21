@@ -99,9 +99,9 @@ class Dog : Pet, IDog
                 Console.WriteLine($"First Dog: {firstDog.Name}");
                 Console.WriteLine($"First Cat: {firstCat.Name}");
 
-                firstDog.Play(); // Check if Play() method is invoked for the first dog
+                firstDog.Play(); //Checking if play is invoked
 
-                firstCat.Play(); // Check if Play() method is invoked for the first cat
+                firstCat.Play(); 
 
                 Console.WriteLine($"{firstDog.Name}: You will be a homeless furball, {firstCat.Name}");
                 firstCat.Evicted();
@@ -144,13 +144,13 @@ class Cat : Pet, ICat
         Console.WriteLine($"{Name}: purrrrrrrrrrrrrrrrrr...");
     }
 
-    public void Evicted()
+    public void Evicted() //What cat will say when evicted
     {
         Console.WriteLine($"{Name}: AAAAAAAAAAAAAAAAAAAAAAH! Help me, I don't like the cold!");
     }
 }
 
-class Pets : IEnumerable<IPet>
+class Pets : IEnumerable<IPet> //IEnumerable added for list gathering
 {
     private List<IPet> petList = new List<IPet>();
 
@@ -225,7 +225,7 @@ class Program
         ICat iCat = null;
         Pets pets = new Pets();
 
-        Random rand = new Random();
+        Random rand = new Random(); //Timer addition
         Timer myTimer = new Timer(20000);
         myTimer.Elapsed += new ElapsedEventHandler(Dog.EvictCat);
         myTimer.Start();
