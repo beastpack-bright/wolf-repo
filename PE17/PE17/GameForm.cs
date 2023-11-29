@@ -14,11 +14,11 @@ namespace PE17
             InitializeComponent();
 
             // sets low and high values
-            UpdateNumberLabels(low.ToString(), high.ToString());
+            UpdateNumberLabels();
 
             // generate random number
             Random rand = new Random();
-            targetNumber = rand.Next(low, high + 1);
+            targetNumber = rand.Next(low, high);
 
             // init timer
             timer1.Interval = 500;
@@ -31,11 +31,12 @@ namespace PE17
             timer1.Start();
         }
 
-        private void UpdateNumberLabels(string low, string high)
+        private void UpdateNumberLabels()
         {
-            outputLabel.Text = low;
-            outputLabel.Text = high;
+            // Display the user's guesses
+            outputLabel.Text = $"Your guess: {currentGuessTextBox.Text}";
         }
+
 
         private void Timer_Tick(object sender, EventArgs e)
         {
@@ -50,50 +51,6 @@ namespace PE17
                 timer1.Stop();
                 MessageBox.Show("Time's up! The game is over.");
                 Close();
-            }
-        }
-
-        private void guessButton_Click(object sender, EventArgs e)
-        {
-            int userGuess;
-
-            // validate if number
-            if (!int.TryParse(currentGuessTextBox.Text, out userGuess))
-            {
-                MessageBox.Show("Invalid guess. Please enter a valid numeric value.");
-                return;
-            }
-
-            // increment guesses
-            nGuesses++;
-
-            // comparing guess with target number
-            if (userGuess < targetNumber)
-            {
-                outputLabel.Text = $"Your guess of {userGuess} was LOW.";
-            }
-            else if (userGuess > targetNumber)
-            {
-                outputLabel.Text = $"Your guess of {userGuess} was HIGH.";
-            }
-            else
-            {
-                timer1.Stop();
-                MessageBox.Show($"Congratulations! You guessed the correct number {targetNumber} in {nGuesses} guesses.");
-
-                // playing again once completed
-                DialogResult result = MessageBox.Show("Do you want to play again?", "Play Again", MessageBoxButtons.YesNo);
-
-                if (result == DialogResult.Yes)
-                {
-                    // reset game
-                    ResetGame();
-                }
-                else
-                {
-                    // close form
-                    Close();
-                }
             }
         }
 
@@ -113,5 +70,52 @@ namespace PE17
             // timer restart
             timer1.Start();
         }
+
+        private void guessButton_Click_1(object sender, EventArgs e)
+        {
+            int userGuess;
+
+            // Validate if the input is a number
+            if (!int.TryParse(currentGuessTextBox.Text, out userGuess))
+            {
+                MessageBox.Show("Invalid guess. Please enter a valid numeric value.");
+                return;
+            }
+
+            // Increment the number of guesses
+            nGuesses++;
+
+            // Compare the guess with the targetNumber and update outputLabel accordingly
+            if (userGuess < targetNumber)
+            {
+                outputLabel.Text = $"Your guess of {userGuess} is TOO LOW.";
+            }
+            else if (userGuess > targetNumber)
+            {
+                outputLabel.Text = $"Your guess of {userGuess} is TOO HIGH.";
+            }
+            else
+            {
+                timer1.Stop();
+                MessageBox.Show($"Congratulations! You guessed the correct number {targetNumber} in {nGuesses} guesses.");
+
+                // Ask if the player wants to play again
+                DialogResult result = MessageBox.Show("Do you want to play again?", "Play Again", MessageBoxButtons.YesNo);
+
+                if (result == DialogResult.Yes)
+                {
+                    // If yes, reset the game
+                    ResetGame();
+                }
+                else
+                {
+                    // If no, close the form
+                    Close();
+                }
+            }
+
+            // Update the displayed guess
+            UpdateNumberLabels();
+        }
     }
-}
+    }

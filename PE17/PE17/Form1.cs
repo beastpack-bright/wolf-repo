@@ -19,9 +19,11 @@ namespace PE17
 
         private void label1_Click(object sender, EventArgs e)
         {
-
+//if i delete this, everything explodes
         }
-        
+
+
+         
 
         private void startButton_Click_1(object sender, EventArgs e)
         {
@@ -35,17 +37,21 @@ namespace PE17
             // Validate input
             if (!bConv || lowNumber >= highNumber)
             {
-                
+                // Show a dialog that the numbers are not valid
                 MessageBox.Show("Invalid input. Please enter valid numeric values for low and high numbers, and ensure low is less than high.");
             }
             else
             {
-                // new gameform with range
+                // Create a new GameForm with the specified range
                 GameForm gameForm = new GameForm(lowNumber, highNumber);
 
-                // show
-                gameForm.ShowDialog();
+                // Show the GameForm
+                gameForm.Show(); // Use Show() instead of ShowDialog()
+
+                // Hide the current form if you want to disable it while the game is active
+                this.Hide();
             }
         }
     }
     }
+    

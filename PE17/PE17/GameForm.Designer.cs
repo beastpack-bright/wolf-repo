@@ -62,6 +62,7 @@
             this.guessButton.TabIndex = 2;
             this.guessButton.Text = "Guess!";
             this.guessButton.UseVisualStyleBackColor = true;
+            this.guessButton.Click += new System.EventHandler(this.guessButton_Click_1);
             // 
             // statusStrip1
             // 
