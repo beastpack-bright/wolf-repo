@@ -9,11 +9,21 @@ namespace PE17
         private int elapsedTime;
         private int nGuesses;
 
+        private int low;
+        private int high;
+        public string highlow;
+
         public GameForm(int low, int high)
         {
             InitializeComponent();
 
-            // sets low and high values
+            // sets low and high values 1
+            this.low = low;
+            this.high = high;
+            highlow = "";
+
+
+            // update label
             UpdateNumberLabels();
 
             // generate random number
@@ -35,6 +45,9 @@ namespace PE17
         {
             // Display the user's guesses
             outputLabel.Text = $"Your guess: {currentGuessTextBox.Text}";
+            outputLabel.Text = $"This is too {highlow}";
+
+
         }
 
 
@@ -63,13 +76,14 @@ namespace PE17
             outputLabel.Text = string.Empty;
             currentGuessTextBox.Text = string.Empty;
 
-            // new number
+            // new number within the original range
             Random rand = new Random();
-            targetNumber = rand.Next(int.Parse(outputLabel.Text), int.Parse(outputLabel.Text) + 1);
+            targetNumber = rand.Next(low, high); // Use the original range for the random number
 
             // timer restart
             timer1.Start();
         }
+
 
         private void guessButton_Click_1(object sender, EventArgs e)
         {
@@ -85,13 +99,15 @@ namespace PE17
             // Increment the number of guesses
             nGuesses++;
 
-            // Compare the guess with the targetNumber and update outputLabel accordingly
+            // Compare the guess
             if (userGuess < targetNumber)
             {
+                highlow = "LOW";
                 outputLabel.Text = $"Your guess of {userGuess} is TOO LOW.";
             }
             else if (userGuess > targetNumber)
             {
+                highlow = "HIGH";
                 outputLabel.Text = $"Your guess of {userGuess} is TOO HIGH.";
             }
             else
