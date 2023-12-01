@@ -270,6 +270,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(53, 542);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(402, 445);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 16;
             this.pictureBox1.TabStop = false;
             // 
@@ -365,6 +366,7 @@
             this.fireworksButton.Size = new System.Drawing.Size(148, 52);
             this.fireworksButton.TabIndex = 19;
             this.fireworksButton.UseVisualStyleBackColor = true;
+            this.fireworksButton.Click += new System.EventHandler(this.fireworksButton_Click);
             // 
             // harrisonTextBox
             // 

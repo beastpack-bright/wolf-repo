@@ -17,7 +17,43 @@ namespace Presidents
             InitializeComponent();
         }
 
+        private void UpdatePresidentImageAndPage(string presidentName)
+        {
+            // Dictionary containing image URLs for each president
+            Dictionary<string, string> presidentImages = new Dictionary<string, string>
+            {
+                // Add the image URLs for each president
+                {"Barack Obama", "https://i.imgur.com/lS38jQc.png"},
+                {"Benjamin Harrison", "https://i.imgur.com/dsoQEWn.jpg"},
+                {"Dwight D. Eisenhower", "https://i.imgur.com/9UVC58p.jpg"},
+                {"Franklin D. Roosevelt", "https://i.imgur.com/nUaThjm.jpg"},
+                {"Franklin Pierce", "https://i.imgur.com/385eVXc.jpg"},
+                {"George Washington", "https://i.imgur.com/5DHgzxg.jpg"},
+                {"George W. Bush", "https://i.imgur.com/aV6YJLl.jpg"},
+                {"James Buchanan", "https://i.imgur.com/ZxamlbX.jpg"},
+                {"John Adams", "https://i.imgur.com/r6c3DPp.jpg"},
+                {"John F. Kennedy", "https://i.imgur.com/r22s4FQ.jpg"},
+                {"Martin Van Buren", "https://i.imgur.com/qILXiSH.jpg"},
+                {"Ronald Reagan", "https://i.imgur.com/5LEI45p.jpg"},
+                {"Theodore Roosevelt", "https://i.imgur.com/9OyET91.jpg"},
+                {"Thomas Jefferson", "https://i.imgur.com/dXGACtp.jpg"},
+                {"William J. Clinton", "https://i.imgur.com/PLMgSqj.jpg"},
+                {"William McKinley", "https://i.imgur.com/PWhDXga.jpg"}
+            };
 
+            // Check if the president name exists in the dictionary
+            if (presidentImages.TryGetValue(presidentName, out string imageUrl))
+            {
+                // Load the image from the URL
+                pictureBox1.ImageLocation = imageUrl;
+
+                // Set the SizeMode property to make the image stretch
+                pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+
+                // Open the Wikipedia page in the web browser
+                webBrowser.Navigate($"https://en.wikipedia.org/wiki/{presidentName.Replace(" ", "_")}");
+            }
+        }
 
 
         //DONT DELETE OR IT EXPLODE!!
@@ -34,118 +70,88 @@ namespace Presidents
         private void harrisonTextBox_TextChanged(object sender, EventArgs e)
         {
         }
-            //end of dont delete or explode
-
-            private void franklinRoosevelt_CheckedChanged(object sender, EventArgs e)
+        //end of dont delete or explode
+        private void franklinRoosevelt_CheckedChanged(object sender, EventArgs e)
         {
-            RadioButton radioButton = (RadioButton)sender;
-            string presidentName = radioButton.Text.Replace(" ", "_");
-            webBrowser.Navigate($"https://en.wikipedia.org/wiki/{presidentName}");
+            UpdatePresidentImageAndPage("Franklin D. Roosevelt");
         }
 
         private void benjaminHarrison_CheckedChanged(object sender, EventArgs e)
         {
-            RadioButton radioButton = (RadioButton)sender;
-            string presidentName = radioButton.Text.Replace(" ", "_");
-            webBrowser.Navigate($"https://en.wikipedia.org/wiki/{presidentName}");
+            if (benjaminHarrison.Checked)
+            {
+                UpdatePresidentImageAndPage("Benjamin Harrison");
+            }
         }
 
         private void williamClinton_CheckedChanged(object sender, EventArgs e)
         {
-            RadioButton radioButton = (RadioButton)sender;
-            string presidentName = radioButton.Text.Replace(" ", "_");
-            webBrowser.Navigate($"https://en.wikipedia.org/wiki/{presidentName}");
+            UpdatePresidentImageAndPage("William J. Clinton");
         }
 
         private void jamesBuchanan_CheckedChanged(object sender, EventArgs e)
         {
-            RadioButton radioButton = (RadioButton)sender;
-            string presidentName = radioButton.Text.Replace(" ", "_");
-            webBrowser.Navigate($"https://en.wikipedia.org/wiki/{presidentName}");
+            UpdatePresidentImageAndPage("James Buchanan");
         }
 
         private void franklinPierce_CheckedChanged(object sender, EventArgs e)
         {
-            RadioButton radioButton = (RadioButton)sender;
-            string presidentName = radioButton.Text.Replace(" ", "_");
-            webBrowser.Navigate($"https://en.wikipedia.org/wiki/{presidentName}");
+            UpdatePresidentImageAndPage("Franklin Pierce");
         }
 
         private void georgeBush_CheckedChanged(object sender, EventArgs e)
         {
-            RadioButton radioButton = (RadioButton)sender;
-            string presidentName = radioButton.Text.Replace(" ", "_");
-            webBrowser.Navigate($"https://en.wikipedia.org/wiki/{presidentName}");
+            UpdatePresidentImageAndPage("George W. Bush");
         }
 
         private void barackObama_CheckedChanged(object sender, EventArgs e)
         {
-            RadioButton radioButton = (RadioButton)sender;
-            string presidentName = radioButton.Text.Replace(" ", "_");
-            webBrowser.Navigate($"https://en.wikipedia.org/wiki/{presidentName}");
+            UpdatePresidentImageAndPage("Barack Obama");
         }
 
         private void johnKennedy_CheckedChanged(object sender, EventArgs e)
         {
-            RadioButton radioButton = (RadioButton)sender;
-            string presidentName = radioButton.Text.Replace(" ", "_");
-            webBrowser.Navigate($"https://en.wikipedia.org/wiki/{presidentName}");
+            UpdatePresidentImageAndPage("John F. Kennedy");
         }
 
         private void williamMckinley_CheckedChanged(object sender, EventArgs e)
         {
-            RadioButton radioButton = (RadioButton)sender;
-            string presidentName = radioButton.Text.Replace(" ", "_");
-            webBrowser.Navigate($"https://en.wikipedia.org/wiki/{presidentName}");
+            UpdatePresidentImageAndPage("William McKinley");
         }
 
         private void ronaldReagan_CheckedChanged(object sender, EventArgs e)
         {
-            RadioButton radioButton = (RadioButton)sender;
-            string presidentName = radioButton.Text.Replace(" ", "_");
-            webBrowser.Navigate($"https://en.wikipedia.org/wiki/{presidentName}"); ;
+            UpdatePresidentImageAndPage("Ronald Reagan");
         }
 
         private void dwightEisenhower_CheckedChanged(object sender, EventArgs e)
         {
-            RadioButton radioButton = (RadioButton)sender;
-            string presidentName = radioButton.Text.Replace(" ", "_");
-            webBrowser.Navigate($"https://en.wikipedia.org/wiki/{presidentName}");
+            UpdatePresidentImageAndPage("Dwight D. Eisenhower");
         }
 
         private void martinVanburen_CheckedChanged(object sender, EventArgs e)
         {
-            RadioButton radioButton = (RadioButton)sender;
-            string presidentName = radioButton.Text.Replace(" ", "_");
-            webBrowser.Navigate($"https://en.wikipedia.org/wiki/{presidentName}");
+            UpdatePresidentImageAndPage("Martin Van Buren");
         }
 
         private void georgeWashington_CheckedChanged(object sender, EventArgs e)
         {
-            RadioButton radioButton = (RadioButton)sender;
-            string presidentName = radioButton.Text.Replace(" ", "_");
-            webBrowser.Navigate($"https://en.wikipedia.org/wiki/{presidentName}");
+            UpdatePresidentImageAndPage("George Washington");
         }
 
         private void johnAdams_CheckedChanged(object sender, EventArgs e)
         {
-            RadioButton radioButton = (RadioButton)sender;
-            string presidentName = radioButton.Text.Replace(" ", "_");
-            webBrowser.Navigate($"https://en.wikipedia.org/wiki/{presidentName}");
+            UpdatePresidentImageAndPage("John Adams");
         }
 
         private void theodoreRoosevelt_CheckedChanged(object sender, EventArgs e)
         {
-            RadioButton radioButton = (RadioButton)sender;
-            string presidentName = radioButton.Text.Replace(" ", "_");
-            webBrowser.Navigate($"https://en.wikipedia.org/wiki/{presidentName}");
+            UpdatePresidentImageAndPage("Theodore Roosevelt");
         }
 
         private void thomasJefferson_CheckedChanged(object sender, EventArgs e)
         {
-            RadioButton radioButton = (RadioButton)sender;
-            string presidentName = radioButton.Text.Replace(" ", "_");
-            webBrowser.Navigate($"https://en.wikipedia.org/wiki/{presidentName}");
+            UpdatePresidentImageAndPage("Thomas Jefferson");
         }
 
         private void harrisonTextBox_MouseEnter(object sender, EventArgs e)
@@ -464,61 +470,69 @@ namespace Presidents
 
             return presidentNumbers[presidentIndex];
         }
+        private void allRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (allradioButton.Checked)
+            {
+                FilterPresidentsByParty("All");
+            }
+        }
 
         private void democratRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            RadioButton radioButton = (RadioButton)sender;
-            string selectedParty = radioButton.Text;
-
-           
-            FilterPresidentsByParty(selectedParty);
+            if (democratRadioButton.Checked)
+            {
+                FilterPresidentsByParty("Democrat");
+            }
         }
+
 
         private void republicanRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            RadioButton radioButton = (RadioButton)sender;
-            string selectedParty = radioButton.Text;
-
-            
-            FilterPresidentsByParty(selectedParty);
+            if (republicanRadioButton.Checked)
+            {
+                FilterPresidentsByParty("Republican");
+            }
         }
+
 
         private void demorepRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            RadioButton radioButton = (RadioButton)sender;
-            string selectedParty = radioButton.Text;
-
-            
-            FilterPresidentsByParty(selectedParty);
+            if (demorepRadioButton.Checked)
+            {
+                FilterPresidentsByParty("Democratic-Republican");
+            }
         }
+
 
         private void federalistRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            RadioButton radioButton = (RadioButton)sender;
-            string selectedParty = radioButton.Text;
-
-            
-            FilterPresidentsByParty(selectedParty);
+            if (federalistRadioButton.Checked)
+            {
+                FilterPresidentsByParty("Federalist");
+            }
         }
+
         private void FilterPresidentsByParty(string party)
         {
-            // Iterate through all RadioButton controls for presidents
-            foreach (Control control in this.Controls)
+            // Iterate through all controls on the form
+            foreach (Control control in Controls)
             {
                 if (control is RadioButton radioButton && radioButton.Name.EndsWith("RadioButton") && radioButton.Tag != null)
                 {
-                    // Get the president's name associated with the RadioButton
+
                     string presidentName = radioButton.Text;
 
-                    // Check if the president's party matches the selected party
                     bool showPresident = presidentParties.TryGetValue(presidentName, out string presidentParty) &&
-                                         presidentParty.Equals(party, StringComparison.OrdinalIgnoreCase);
+                                         (party.Equals("All", StringComparison.OrdinalIgnoreCase) || presidentParty.Equals(party, StringComparison.OrdinalIgnoreCase));
 
                     // Set the visibility of the RadioButton based on the filter
                     radioButton.Visible = showPresident;
                 }
             }
         }
+
+
 
         private Dictionary<string, string> presidentParties = new Dictionary<string, string>
 {
@@ -540,6 +554,11 @@ namespace Presidents
     { "Thomas Jefferson", "Democratic-Republican" },
 };
 
+        private void fireworksButton_Click(object sender, EventArgs e)
+        {
+            // Change the web browser to the fireworks image URL
+            webBrowser.Navigate("https://media1.giphy.com/media/MViYNpI0wx69zX7j7w/giphy.gif?cid=ecf05e47vhdd9p64ir3oinyg514nocd2wdevyd2mp3eaizwx&ep=v1_gifs_search&rid=giphy.gif&ct=g");
+        }
 
 
     }
