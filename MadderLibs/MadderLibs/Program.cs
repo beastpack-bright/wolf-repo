@@ -14,12 +14,12 @@ namespace Madlibs
 
             string finalStory = "";
 
-            // Dictionary to store user-entered values
+            // Dictionary, store user-entered values
             Dictionary<string, string> userValues = new Dictionary<string, string>();
 
             StreamReader input;
 
-            // open the template file to count how many Mad Libs it contains
+            // open the template file, count mad libs
             input = new StreamReader("c:\\templates\\MadLibsTemplate.txt");
 
             string line = null;
@@ -31,19 +31,19 @@ namespace Madlibs
             // close it
             input.Close();
 
-            // only allocate as many strings as there are Mad Libs
+            // strings = number of mad libs
             string[] madLibs = new string[numLibs];
 
-            // read the Mad Libs into the array of strings
+            // read = strings
             input = new StreamReader("c:\\templates\\MadLibsTemplate.txt");
 
             line = null;
             while ((line = input.ReadLine()) != null)
             {
-                // set this array element to the current line of the template file
+                // array = current line
                 madLibs[cntr] = line;
 
-                // replace the "\\n" tag with the newline escape character
+                // replace the "\\n" tag with newline escape
                 madLibs[cntr] = madLibs[cntr].Replace("\\n", "\n");
 
                 ++cntr;
@@ -51,45 +51,48 @@ namespace Madlibs
 
             input.Close();
 
-            // prompt the user for which Mad Lib they want to play (nChoice)
+            // prompt user
             Console.Write("Enter the Mad Lib number you want to play: ");
             nChoice = int.Parse(Console.ReadLine());
 
-            // split the Mad Lib into separate words
+            // split mad lib
             string[] words = madLibs[nChoice].Split(' ');
 
             foreach (string word in words)
             {
-                // if word is a placeholder
+                // check for word being placeholder
                 if (word[0] == '{')
                 {
-                    string placeholder = word.Replace("{", "").Replace("}", "").Replace("_", "");
+                    string placeholder = word.Replace("{", "").Replace("}", "").Replace("_", " ");
 
-                    // if the user has already entered a value for this placeholder, reuse it
+                    // reuse value if it already exists
                     if (userValues.ContainsKey(placeholder))
                     {
                         finalStory += " " + userValues[placeholder];
                     }
                     else
                     {
-                        // prompt the user for the replacement
+                        // user replacement prompt
                         Console.Write("Input a {0}: ", placeholder);
-                        // and append the user response to the result string
+                        // appending user response
                         string userResponse = Console.ReadLine();
                         userValues.Add(placeholder, userResponse);
                         finalStory += " " + userResponse;
                     }
                 }
-                // else append word to the result string
+                // adding word to result string
                 else
                 {
                     finalStory += " " + word;
                 }
             }
 
-            // Print the final story with proper spacing
-            Console.WriteLine("Final Story:");
-            Console.WriteLine(finalStory.Trim()); // Trim to remove leading space
+            // Final story
+            Console.WriteLine("\nFinal Story:");
+            Console.WriteLine(finalStory.Trim()); //Removing leading space
+
+            //Console window won't close
+            Console.ReadLine();
         }
     }
 }
