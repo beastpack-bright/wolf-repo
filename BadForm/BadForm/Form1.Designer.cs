@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.generateDino = new System.Windows.Forms.Button();
             this.dinosaurImage = new System.Windows.Forms.PictureBox();
             this.codeLanguage = new System.Windows.Forms.GroupBox();
@@ -45,12 +44,11 @@
             this.selectList = new System.Windows.Forms.ListBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.penguinImage = new System.Windows.Forms.PictureBox();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.listButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dinosaurImage)).BeginInit();
             this.codeLanguage.SuspendLayout();
             this.goodCoder.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.penguinImage)).BeginInit();
             this.SuspendLayout();
             // 
             // generateDino
@@ -186,7 +184,7 @@
             // 
             this.selectList.FormattingEnabled = true;
             this.selectList.ItemHeight = 31;
-            this.selectList.Location = new System.Drawing.Point(644, 577);
+            this.selectList.Location = new System.Drawing.Point(388, 594);
             this.selectList.Name = "selectList";
             this.selectList.Size = new System.Drawing.Size(268, 345);
             this.selectList.TabIndex = 6;
@@ -205,28 +203,26 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick_1);
             // 
-            // penguinImage
-            // 
-            this.penguinImage.Image = ((System.Drawing.Image)(resources.GetObject("penguinImage.Image")));
-            this.penguinImage.Location = new System.Drawing.Point(1606, 824);
-            this.penguinImage.Name = "penguinImage";
-            this.penguinImage.Size = new System.Drawing.Size(2343, 1218);
-            this.penguinImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.penguinImage.TabIndex = 8;
-            this.penguinImage.TabStop = false;
-            this.penguinImage.Visible = false;
-            this.penguinImage.Click += new System.EventHandler(this.penguinImage_Click);
-            // 
             // timer2
             // 
             this.timer2.Interval = 5000;
+            // 
+            // listButton
+            // 
+            this.listButton.Location = new System.Drawing.Point(728, 594);
+            this.listButton.Name = "listButton";
+            this.listButton.Size = new System.Drawing.Size(212, 73);
+            this.listButton.TabIndex = 8;
+            this.listButton.Text = "More Info";
+            this.listButton.UseVisualStyleBackColor = true;
+            this.listButton.Click += new System.EventHandler(this.listButton_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1853, 1081);
-            this.Controls.Add(this.penguinImage);
+            this.Controls.Add(this.listButton);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.selectList);
             this.Controls.Add(this.specialButton);
@@ -243,7 +239,6 @@
             this.codeLanguage.PerformLayout();
             this.goodCoder.ResumeLayout(false);
             this.goodCoder.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.penguinImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -266,8 +261,8 @@
         private System.Windows.Forms.ListBox selectList;
         private System.Windows.Forms.Timer timer1;
         public System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.PictureBox penguinImage;
         private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.Button listButton;
     }
 }
 

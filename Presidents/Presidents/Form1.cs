@@ -15,8 +15,12 @@ namespace Presidents
         public Form1()
         {
             InitializeComponent();
+            pictureBox1.MouseHover += PictureBox1_MouseHover;
+            pictureBox1.MouseLeave += PictureBox1_MouseLeave;
         }
-
+        private int originalPictureBoxWidth;
+        private int originalPictureBoxHeight;
+        private bool isEnlarged = false;
         private void UpdatePresidentImageAndPage(string presidentName)
         {
             // Dictionary containing image URLs for each president
@@ -54,7 +58,31 @@ namespace Presidents
                 webBrowser.Navigate($"https://en.wikipedia.org/wiki/{presidentName.Replace(" ", "_")}");
             }
         }
+        private void PictureBox1_MouseHover(object sender, EventArgs e)
+        {
+            if (!isEnlarged)
+            {
+                // Store the original size
+                originalPictureBoxWidth = pictureBox1.Width;
+                originalPictureBoxHeight = pictureBox1.Height;
 
+                // Enlarge the image
+                pictureBox1.Width = (int)(originalPictureBoxWidth * 1.2);
+                pictureBox1.Height = (int)(originalPictureBoxHeight * 1.2);
+                isEnlarged = true;
+            }
+        }
+
+        private void PictureBox1_MouseLeave(object sender, EventArgs e)
+        {
+            if (isEnlarged)
+            {
+                // Restore the original size
+                pictureBox1.Width = originalPictureBoxWidth;
+                pictureBox1.Height = originalPictureBoxHeight;
+                isEnlarged = false;
+            }
+        }
 
         //DONT DELETE OR IT EXPLODE!!
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
@@ -486,7 +514,6 @@ namespace Presidents
             }
         }
 
-
         private void republicanRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             if (republicanRadioButton.Checked)
@@ -494,7 +521,6 @@ namespace Presidents
                 FilterPresidentsByParty("Republican");
             }
         }
-
 
         private void demorepRadioButton_CheckedChanged(object sender, EventArgs e)
         {
@@ -504,7 +530,6 @@ namespace Presidents
             }
         }
 
-
         private void federalistRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             if (federalistRadioButton.Checked)
@@ -513,29 +538,46 @@ namespace Presidents
             }
         }
 
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+            // Find the selected RadioButton within the GroupBox
+            foreach (Control control in groupBox1.Controls)
+            {
+                if (control is RadioButton radioButton && radioButton.Checked)
+                {
+                    string party = radioButton.Text;
+                    FilterPresidentsByParty(party);
+                    break; // No need to check further once we find the selected RadioButton
+                }
+            }
+        }
+
         private void FilterPresidentsByParty(string party)
         {
-            // Iterate through all controls on the form
+            // Iterate through all Controls on the form
             foreach (Control control in Controls)
             {
-                if (control is RadioButton radioButton && radioButton.Name.EndsWith("RadioButton") && radioButton.Tag != null)
+                if (control is RadioButton presidentRadioButton && presidentRadioButton.Tag != null)
                 {
+                    string presidentName = presidentRadioButton.Text;
 
-                    string presidentName = radioButton.Text;
-
+                    // Find the associated party for the current president
                     bool showPresident = presidentParties.TryGetValue(presidentName, out string presidentParty) &&
-                                         (party.Equals("All", StringComparison.OrdinalIgnoreCase) || presidentParty.Equals(party, StringComparison.OrdinalIgnoreCase));
+                                        (party.Equals("All", StringComparison.OrdinalIgnoreCase) || presidentParty.Equals(party, StringComparison.OrdinalIgnoreCase));
 
-                    // Set the visibility of the RadioButton based on the filter
-                    radioButton.Visible = showPresident;
+                    // Set the visibility of the associated RadioButton based on the filter
+                    presidentRadioButton.Visible = showPresident;
                 }
             }
         }
 
 
 
+
+
+
         private Dictionary<string, string> presidentParties = new Dictionary<string, string>
-{
+        {
     { "Benjamin Harrison", "Republican" },
     { "Franklin D. Roosevelt", "Democrat" },
     { "William J. Clinton", "Democrat" },
@@ -560,6 +602,9 @@ namespace Presidents
             webBrowser.Navigate("https://media1.giphy.com/media/MViYNpI0wx69zX7j7w/giphy.gif?cid=ecf05e47vhdd9p64ir3oinyg514nocd2wdevyd2mp3eaizwx&ep=v1_gifs_search&rid=giphy.gif&ct=g");
         }
 
+        private void groupBox1_Enter_1(object sender, EventArgs e)
+        {
 
+        }
     }
 }

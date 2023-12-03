@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
 
@@ -9,10 +10,10 @@ namespace BadForm
 {
     public partial class Form1 : Form
     {
-
+        //keeping track of last selected dinosaur's name
         private string lastSelectedDinosaurName;
 
-
+        //dictionary used for dinosaur names 
         private readonly Dictionary<string, DinosaurInfo> dinosaurDictionary = new Dictionary<string, DinosaurInfo>
         {
             ["Allosaurus"] = new DinosaurInfo("Allosaurus", "https://i.imgur.com/RNoogfs.png", "Python", false, "The Allosaurus, while a very fearsome- and passionate- beast, does not have the coding prowess they would like to have. Short arms and a passion for breaking computers leads to this theropod having many errors in even the simplest code."),
@@ -26,7 +27,7 @@ namespace BadForm
             ["Velociraptor"] = new DinosaurInfo("Velociraptor", "https://i.imgur.com/hnYp2mt.png", "C#", true, "The inventors of C#. Back in CODING BC, a pack of Velociraptors created C# in order to... do whatever dinosaurs do. They spent ages working and developing lines of code, possible errors, and also the computer since computers did not exist back then. A lot of coffee. (invented by the Pterodactyls). was drank."),
             ["Titanoboa"] = new DinosaurInfo("Titanoboa", "https://i.imgur.com/lbPSzuN.png", "Python", true, "Python for pythons!"),
             ["Tyrannosaurus Code"] = new DinosaurInfo("Tyrannosaurus Code", "https://i.imgur.com/w2mXGfZ.png", "HTML", false, "yeah he sucks!"),
-            // Add more dinosaur information as needed
+            
         };
 
         private readonly Random random = new Random();
@@ -46,7 +47,7 @@ namespace BadForm
             // Initialize the penguin timer
             InitializePenguinTimer();
 
-            // Subscribe timer1_Tick to the Tick event of timer1
+           
             timer1.Tick += timer1_Tick_1;
 
 
@@ -58,7 +59,7 @@ namespace BadForm
             // Clear existing items
             selectList.Items.Clear();
 
-            // Add dinosaur names to the ListBox
+            // Add dinosaur names 
             foreach (string dinosaurName in dinosaurDictionary.Keys)
             {
                 selectList.Items.Add(dinosaurName);
@@ -74,7 +75,7 @@ namespace BadForm
         {
             string selectedDinosaurName = selectList.SelectedItem?.ToString();
 
-            // Handle the case when the same item is selected (deselection)
+            
             if (selectedDinosaurName == lastSelectedDinosaurName)
             {
                 // Deselect the item
@@ -132,7 +133,7 @@ namespace BadForm
             {
                 DinosaurInfo dinosaur = entry.Value;
 
-                // Check if the dinosaur matches the criteria
+                
                 if ((string.IsNullOrEmpty(selectedDinosaurName) || dinosaur.Name == selectedDinosaurName) &&
                     (goodAtCode ? dinosaur.GoodAtCode : !dinosaur.GoodAtCode) &&
                     (string.IsNullOrEmpty(selectedLanguage) || dinosaur.CodeLanguage.Equals(selectedLanguage, StringComparison.OrdinalIgnoreCase)))
@@ -157,7 +158,7 @@ namespace BadForm
             return dinosaurs[randomIndex];
         }
 
-       
+
 
         private void DisplayDinosaur(DinosaurInfo dinosaur)
         {
@@ -166,7 +167,7 @@ namespace BadForm
                 // Display the dinosaur image
                 dinosaurImage.ImageLocation = dinosaur.ImagePath;
 
-                // Format the dinosaur description with line breaks and random font
+                
                 string formattedDescription = $"Selected Dinosaur: {dinosaur.Name}\nDescription:\n";
 
                 string[] sentences = dinosaur.Description.Split('.');
@@ -175,32 +176,32 @@ namespace BadForm
                     formattedDescription += $"{sentence.Trim()}\n";
                 }
 
-                // Set a random font for the description
+                
                 Font randomFont = GetRandomFont();
                 dinosaurText.Font = randomFont;
 
-                // Display the formatted dinosaur text
+                
                 dinosaurText.Text = formattedDescription.Trim();
             }
             else
             {
-                // Handle the case when no suitable dinosaurs are found
-                dinosaurImage.ImageLocation = null; // Clear the image
+                //no suitable dinos
+                dinosaurImage.ImageLocation = null; 
                 dinosaurText.Text = "No suitable dinosaurs found";
             }
         }
         private Font GetRandomFont()
         {
-            // Get all system fonts
+            
             FontFamily[] fontFamilies = FontFamily.Families;
 
             // Select a random font family
             FontFamily randomFontFamily = fontFamilies[random.Next(fontFamilies.Length)];
 
-            // Generate a random font size
+            
             float randomFontSize = random.Next(8, 16);
 
-            // Create and return the random font
+            
             return new Font(randomFontFamily, randomFontSize);
         }
 
@@ -213,14 +214,14 @@ namespace BadForm
 
         private void specialButton_Click_1(object sender, EventArgs e)
         {
-            // Change the background color to a random color
+            // Change the background color 
             Random random = new Random();
             this.BackColor = Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));
         }
 
         private void generateDino_Click(object sender, EventArgs e)
         {
-            // Move the button 1px to the left
+            
             generateDinoButtonXOffset = (generateDinoButtonXOffset - 1) % this.Width;
             generateDino.Location = new Point(generateDinoButtonXOffset, generateDino.Location.Y);
 
@@ -231,94 +232,78 @@ namespace BadForm
             SetRandomBackColor(specialButton);
             SetRandomProgressBarColor();
 
-            // Get selected coding language
+            //  selected coding language
             string selectedLanguage = GetSelectedRadioButtonText(codeLanguage);
 
-            // Get whether the dinosaur is good at code
+            // whether the dinosaur is good at code
             string proficiency = GetSelectedRadioButtonText(goodCoder);
 
-            // Check if coding language and proficiency are selected
+            // check if coding language and proficiency are selected
             if (string.IsNullOrEmpty(selectedLanguage) || string.IsNullOrEmpty(proficiency))
             {
                 MessageBox.Show("Please select a coding language and proficiency before generating a dinosaur.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // Convert proficiency to a boolean value
+            //prof = bool
             bool goodAtCode = proficiency == "Yes";
 
-            // Filter dinosaurs based on the selected criteria
+            
             List<DinosaurInfo> viableDinosaurs = FilterDinosaurs(null, goodAtCode, selectedLanguage);
 
-            // Select a random dinosaur
+            
             DinosaurInfo selectedDinosaur = GetRandomDinosaur(viableDinosaurs);
 
-            // Display the dinosaur image and text
+            
             DisplayDinosaur(selectedDinosaur);
 
-            // Move the button 1px to the left
+            // Move the button
             generateDinoButtonXOffset = (generateDinoButtonXOffset - 1) % this.Width;
             generateDino.Location = new Point(generateDinoButtonXOffset, generateDino.Location.Y);
         }
 
         private void PenguinTimerElapsed(object sender, ElapsedEventArgs e)
         {
-            // Show the "Penguins are coming" error message
-            ShowPenguinErrorMessage();
-
-            // Set the remaining time for the progress bar
-            remainingTime = penguinTimer.Interval / 1000;
-
-            // Enable the timer to start counting down
-            penguinTimer.Enabled = true;
-
-            // Start the timer1 to update the progress bar
-            timer1.Start();
-        }
-
-
-        private void ShowPenguinErrorMessage()
-        {
-            // Show the "Penguins are coming" error message with a bright pink background
-            Action showMessage = () =>
+            //  separate thread
+            Task.Run(() =>
             {
-                MessageBox.Show("Penguins are coming!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            };
+                
 
-            // Invoke on the UI thread
-            Invoke(showMessage);
-
-            // Invoke to show the penguinImage PictureBox on the UI thread
-            Invoke((MethodInvoker)delegate
-            {
-                // Show the penguinImage PictureBox
-                penguinImage.Show();
+                
+                ShowPenguinErrorMessageAndOpenForm2();
             });
-
-            // Disable the timer1 to prevent multiple messages
-            timer1.Enabled = false;
-
-            
         }
 
-
-        private void UpdateProgressBar()
+        private void ShowPenguinErrorMessageAndOpenForm2()
         {
-            // Calculate the progress bar value based on the remaining time
-            int progressBarValue = (int)((remainingTime / (penguinTimer.Interval / 1000)) * progressBar1.Maximum);
+            // Show the "Penguins are coming" error message
+            MessageBox.Show("Penguins are coming!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-            // Update the progress bar value
-            progressBar1.Value = progressBarValue;
+            // Hide Form1
+            Hide();
+
+            // Open Form2
+            Form2 form2 = new Form2();
+            form2.ShowDialog();
+
+            // Close the application 
+            Close();
         }
 
 
-        // Add this event handler for the timer tick
+
+
+
+        
+
+
+        
 
 
 
         private void codeLanguage_CheckedChanged(object sender, EventArgs e)
         {
-            // Clear other radio buttons when one is checked
+            // Clear other radio buttons 
             foreach (RadioButton radioButton in codeLanguage.Controls.OfType<RadioButton>())
             {
                 if (radioButton != sender)
@@ -330,16 +315,16 @@ namespace BadForm
 
         private void InitializePenguinTimer()
         {
-            // Initialize the penguin timer with random intervals
+            // Initialize the penguin timer 
             penguinTimer = new System.Timers.Timer(random.Next(30000, 60000)); // Random interval between 30 to 60 seconds
             penguinTimer.Elapsed += PenguinTimerElapsed;
             penguinTimer.AutoReset = true;
             penguinTimer.Enabled = true;
 
-            
+
         }
 
-        
+
 
         private void codeLanguage_Enter(object sender, EventArgs e)
         {
@@ -393,7 +378,7 @@ namespace BadForm
         {
 
         }
-        
+
 
         private void penguinImage_Click(object sender, EventArgs e)
         {
@@ -406,13 +391,13 @@ namespace BadForm
 
             if (remainingTime <= 0)
             {
-                // Timer expired, show penguin error message
-                ShowPenguinErrorMessage();
+                //shows error + opens form2
+                ShowPenguinErrorMessageAndOpenForm2();
+
+
+
                 
-
-
-                // Update the progress bar
-                UpdateProgressBar();
+                
             }
 
 
@@ -436,6 +421,15 @@ namespace BadForm
             }
         }
 
+        private void listButton_Click(object sender, EventArgs e)
+        {
+            //form3 instance
+            Form3 form3 = new Form3();
 
+            
+
+            // Show Form3
+            form3.Show();
+        }
     }
 }
