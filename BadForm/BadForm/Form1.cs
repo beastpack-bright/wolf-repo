@@ -43,15 +43,33 @@ namespace BadForm
             InitializeComponent();
             // Populate the ListBox with dinosaur names when the form loads
             PopulateDinosaurList();
-
+            csharpRadioButton.CheckedChanged += CsharpRadioButton__CheckedChanged;
+            javascriptradioButton.CheckedChanged += JavascriptRadioButton__CheckedChanged;
+            htmlradioButton.CheckedChanged += HtmlRadioButton__CheckedChanged; 
+            pythonradioButton.CheckedChanged += PythonRadioButton__CheckedChanged;
+            toolStripProgressBar1.Value = 240;
+            listButton.Click += ListButton__Click;
+            yesRadioButton.CheckedChanged += codeLanguage_CheckedChanged;
+            noRadioButton.CheckedChanged += codeLanguage_CheckedChanged;
             // Initialize the penguin timer
             InitializePenguinTimer();
 
            
-            timer1.Tick += timer1_Tick_1;
+            timer1.Tick += Timer1__Tick;
 
 
         }
+
+        private void ListButton__Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void CsharpRadioButton__CheckedChanged(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
         private double remainingTime;
 
         private void PopulateDinosaurList()
@@ -98,12 +116,7 @@ namespace BadForm
             }
         }
 
-        private void SetRandomProgressBarColor()
-        {
-            Random random = new Random();
-            progressBar1.BackColor = Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));
-            progressBar1.ForeColor = Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));
-        }
+       
 
         private void specialButton_Click(object sender, EventArgs e)
         {
@@ -230,7 +243,7 @@ namespace BadForm
             SetRandomBackColor(codeLanguage);
             SetRandomBackColor(goodCoder);
             SetRandomBackColor(specialButton);
-            SetRandomProgressBarColor();
+            
 
             //  selected coding language
             string selectedLanguage = GetSelectedRadioButtonText(codeLanguage);
@@ -341,7 +354,7 @@ namespace BadForm
             }
         }
 
-        private void javascriptRadioButton_CheckedChanged(object sender, EventArgs e)
+        private void JavascriptRadioButton__CheckedChanged(object sender, EventArgs e)
         {
             if (javascriptradioButton.Checked)
             {
@@ -352,7 +365,7 @@ namespace BadForm
             }
         }
 
-        private void pythonRadioButton_CheckedChanged(object sender, EventArgs e)
+        private void PythonRadioButton__CheckedChanged(object sender, EventArgs e)
         {
             if (pythonradioButton.Checked)
             {
@@ -363,7 +376,7 @@ namespace BadForm
             }
         }
 
-        private void htmlRadioButton_CheckedChanged(object sender, EventArgs e)
+        private void HtmlRadioButton__CheckedChanged(object sender, EventArgs e)
         {
             if (htmlradioButton.Checked)
             {
@@ -384,23 +397,15 @@ namespace BadForm
         {
 
         }
-
-        private void timer1_Tick_1(object sender, EventArgs e)
+   
+        private void Timer1__Tick(object sender, EventArgs e)
         {
-            remainingTime--;
-
-            if (remainingTime <= 0)
+            toolStripProgressBar1.Value--;
+            if (toolStripProgressBar1.Value == 0)
             {
-                //shows error + opens form2
                 ShowPenguinErrorMessageAndOpenForm2();
-
-
-
                 
-                
-            }
-
-
+            }toolStripProgressBar1.Value = 240;
         }
 
         public class DinosaurInfo

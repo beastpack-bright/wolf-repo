@@ -42,13 +42,15 @@
             this.yesRadioButton = new System.Windows.Forms.RadioButton();
             this.specialButton = new System.Windows.Forms.Button();
             this.selectList = new System.Windows.Forms.ListBox();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.listButton = new System.Windows.Forms.Button();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.dinosaurImage)).BeginInit();
             this.codeLanguage.SuspendLayout();
             this.goodCoder.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // generateDino
@@ -189,19 +191,9 @@
             this.selectList.Size = new System.Drawing.Size(268, 345);
             this.selectList.TabIndex = 6;
             // 
-            // progressBar1
-            // 
-            this.progressBar1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.progressBar1.ForeColor = System.Drawing.Color.Fuchsia;
-            this.progressBar1.Location = new System.Drawing.Point(0, 2);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(1856, 40);
-            this.progressBar1.TabIndex = 7;
-            this.progressBar1.Click += new System.EventHandler(this.progressBar1_Click);
-            // 
             // timer1
             // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick_1);
+            this.timer1.Tick += new System.EventHandler(this.Timer1__Tick);
             // 
             // timer2
             // 
@@ -217,13 +209,29 @@
             this.listButton.UseVisualStyleBackColor = true;
             this.listButton.Click += new System.EventHandler(this.listButton_Click);
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(40, 40);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripProgressBar1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 1033);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1853, 48);
+            this.statusStrip1.TabIndex = 9;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripProgressBar1
+            // 
+            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
+            this.toolStripProgressBar1.Size = new System.Drawing.Size(800, 32);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1853, 1081);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.listButton);
-            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.selectList);
             this.Controls.Add(this.specialButton);
             this.Controls.Add(this.goodCoder);
@@ -239,6 +247,8 @@
             this.codeLanguage.PerformLayout();
             this.goodCoder.ResumeLayout(false);
             this.goodCoder.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -260,9 +270,10 @@
         private System.Windows.Forms.Button specialButton;
         private System.Windows.Forms.ListBox selectList;
         private System.Windows.Forms.Timer timer1;
-        public System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.Button listButton;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
     }
 }
 
