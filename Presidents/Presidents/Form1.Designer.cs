@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.benjaminHarrison = new System.Windows.Forms.RadioButton();
             this.franklinRoosevelt = new System.Windows.Forms.RadioButton();
             this.williamClinton = new System.Windows.Forms.RadioButton();
@@ -69,8 +70,16 @@
             this.roosevelttTextBox = new System.Windows.Forms.TextBox();
             this.jeffersonTextBox = new System.Windows.Forms.TextBox();
             this.kinleyTextBox = new System.Windows.Forms.TextBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.exitButton = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // benjaminHarrison
@@ -357,7 +366,7 @@
             this.webBrowser.Location = new System.Drawing.Point(847, 7);
             this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser.Name = "webBrowser";
-            this.webBrowser.Size = new System.Drawing.Size(1662, 1353);
+            this.webBrowser.Size = new System.Drawing.Size(1662, 980);
             this.webBrowser.TabIndex = 18;
             // 
             // fireworksButton
@@ -482,11 +491,43 @@
             this.kinleyTextBox.Size = new System.Drawing.Size(76, 38);
             this.kinleyTextBox.TabIndex = 35;
             // 
+            // exitButton
+            // 
+            this.exitButton.Location = new System.Drawing.Point(696, 1015);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(168, 63);
+            this.exitButton.TabIndex = 36;
+            this.exitButton.Text = "Exit ";
+            this.exitButton.UseVisualStyleBackColor = true;
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(40, 40);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripProgressBar1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 1324);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(2508, 48);
+            this.statusStrip1.TabIndex = 37;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripProgressBar1
+            // 
+            this.toolStripProgressBar1.Maximum = 240;
+            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
+            this.toolStripProgressBar1.Size = new System.Drawing.Size(800, 32);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2508, 1372);
+            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.exitButton);
             this.Controls.Add(this.kinleyTextBox);
             this.Controls.Add(this.jeffersonTextBox);
             this.Controls.Add(this.roosevelttTextBox);
@@ -529,6 +570,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -577,6 +621,12 @@
         private System.Windows.Forms.TextBox roosevelttTextBox;
         private System.Windows.Forms.TextBox jeffersonTextBox;
         private System.Windows.Forms.TextBox kinleyTextBox;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Button exitButton;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

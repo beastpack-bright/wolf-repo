@@ -15,8 +15,148 @@ namespace Presidents
         public Form1()
         {
             InitializeComponent();
+            try
+            {
+                // Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.2; WOW64; Trident / 7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; wbx 1.0.0)
+                Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(
+                    @"SOFTWARE\\WOW6432Node\\Microsoft\\Internet Explorer\\MAIN\\FeatureControl\\FEATURE_BROWSER_EMULATION",
+                    true);
+                key.SetValue(Application.ExecutablePath.Replace(Application.StartupPath + "\\", ""), 12001, Microsoft.Win32.RegistryValueKind.DWord);
+                key.Close();
+            }
+            catch
+            {
+
+            }
+
             pictureBox1.MouseHover += PictureBox1_MouseHover;
             pictureBox1.MouseLeave += PictureBox1_MouseLeave;
+            foreach (Control control in this.Controls)
+            {
+                if (control.GetType()==typeof(TextBox))
+                {
+                    control.MouseHover += TextBox__MouseHover;
+                    control.KeyPress += TextBox__KeyPress;
+                    control.Validating += TextBox__Validating;
+                }
+            }
+            allradioButton.CheckedChanged += AllRadioButton__CheckedChanged;
+            democratRadioButton.CheckedChanged += DemocratRadioButton__CheckedChanged;
+            republicanRadioButton.CheckedChanged += RepublicanRadioButton__CheckedChanged;
+            demorepRadioButton.CheckedChanged += DemorepRadioButton__CheckedChanged;
+            federalistRadioButton.CheckedChanged += FederalistRadioButton__CheckedChanged;
+            benjaminHarrison.CheckedChanged += BenjaminHarrison__CheckedChanged;
+            williamClinton.CheckedChanged += WilliamClinton__CheckedChanged;
+            franklinRoosevelt.CheckedChanged += FranklinRoosevelt__CheckedChanged;
+            franklinPierce.CheckedChanged += FranklinPierce__CheckedChanged;
+            ronaldReagan.CheckedChanged += RonaldReagan__CheckedChanged;
+            dwightEisenhower.CheckedChanged += DwightEisenhower__CheckedChanged;
+            jamesBuchanan.CheckedChanged += JamesBuchanan__CheckedChanged;
+            georgeBush.CheckedChanged += GeorgeBush__CheckedChanged;
+            georgeWashington.CheckedChanged += GeorgeWashington__CheckedChanged;
+            barackObama.CheckedChanged += BarackObama__CheckedChanged;
+            williamMckinley.CheckedChanged += WilliamMckinley__CheckedChanged;
+            johnKennedy.CheckedChanged += JohnKennedy__CheckedChanged;
+            martinVanburen.CheckedChanged += MartinVanburen__CheckedChanged;
+            theodoreRoosevelt.CheckedChanged += TheodoreRoosevelt__CheckedChanged;
+            johnAdams.CheckedChanged += JohnAdams__CheckedChanged;
+            thomasJefferson.CheckedChanged += ThomasJefferson__CheckedChanged;
+
+
+            timer1.Interval = 1000;
+            toolStripProgressBar1.Value = 240;
+            timer1.Tick += Timer1__Tick;
+            harrisonTextBox.Tag = 23;
+            clintonTextBox.Tag = 42;
+            rooseveltTextBox.Tag = 32;
+            buchananTextBox.Tag = 15;
+            pierceTextBox.Tag = 14;
+            bushTextBox.Tag = 43;
+            obamaTextBox.Tag = 44;
+            kennedyTextBox.Tag = 35;
+            kinleyTextBox.Tag = 25;  
+            reaganTextBox.Tag = 40;
+            eisenhowerTextBox.Tag = 34;
+            vanburenTextBox.Tag = 8;
+            adamsTextBox.Tag = 2;
+            washingtonTextBox.Tag = 1; 
+            roosevelttTextBox.Tag = 26; 
+            jeffersonTextBox.Tag = 3;  
+
+        }
+        private void Timer1__Tick(object sender, EventArgs e)
+        {
+            toolStripProgressBar1.Value--;
+            if (toolStripProgressBar1.Value == 0)
+            {
+                foreach (Control control in this.Controls)
+                {
+                    if (control.GetType() == typeof(TextBox))
+                    {
+                        TextBox tb = (TextBox)control;
+                        tb.Text = "0";
+
+                    }
+                }
+                toolStripProgressBar1.Value = 240;
+            }
+        }
+        private void TextBox__Validating(object sender, CancelEventArgs e)
+        {
+            bool allCorrect = true;
+            TextBox tb = (TextBox)sender;
+            if (tb.Text.Length == 0)
+            {
+                tb.Text = "0";
+            } else
+            {
+                errorProvider1.SetError(tb, null);
+                e.Cancel = false;
+                if (Convert.ToInt32(tb.Text) != (Int32)tb.Tag)
+                {
+                    errorProvider1.SetError(tb, "That is the wrong number.");
+                    e.Cancel = true;
+                } else
+                {
+                    foreach(Control control in this.Controls)
+                    {
+                        if (control.GetType() == typeof(TextBox))
+                        {
+                            TextBox textBox = (TextBox)control; 
+                            if (Convert.ToInt32(textBox.Text) != (Int32)textBox.Tag)
+                            {
+                                allCorrect = false;
+                            } 
+                        }
+                    } if (allCorrect)
+                    {
+                        exitButton.Enabled = true;
+                        timer1.Stop();
+                        webBrowser.Navigate("https://media1.giphy.com/media/MViYNpI0wx69zX7j7w/giphy.gif?cid=ecf05e47vhdd9p64ir3oinyg514nocd2wdevyd2mp3eaizwx&ep=v1_gifs_search&rid=giphy.gif&ct=g");
+                    }
+                }
+            }
+        }
+        private void TextBox__KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (toolStripProgressBar1.Value == 240)
+            {
+                timer1.Start();
+            }
+            TextBox tb = (TextBox)sender;
+            if (Char.IsDigit(e.KeyChar) ||e.KeyChar == '\b')
+            {
+                e.Handled = false;
+            } else
+            {
+                e.Handled = true;
+            }
+        }
+        private void TextBox__MouseHover(object sender, EventArgs e)
+        {
+            //TextBox tb = sender as TextBox;
+            TextBox tb = (TextBox)sender;
+            toolTip1.Show("Which # president? ", tb);
         }
         private int originalPictureBoxWidth;
         private int originalPictureBoxHeight;
@@ -99,12 +239,89 @@ namespace Presidents
         {
         }
         //end of dont delete or explode
+
+        //CODE JAIL CODE JAIL CODE JAIL//
         private void franklinRoosevelt_CheckedChanged(object sender, EventArgs e)
         {
-            UpdatePresidentImageAndPage("Franklin D. Roosevelt");
+           
+        }
+        private void williamClinton_CheckedChanged(object sender, EventArgs e)
+        {
+            
+
+        }
+        private void jamesBuchanan_CheckedChanged(object sender, EventArgs e)
+        {
+            
+        }
+        private void franklinPierce_CheckedChanged(object sender, EventArgs e)
+        {
+            
         }
 
-        private void benjaminHarrison_CheckedChanged(object sender, EventArgs e)
+        private void georgeBush_CheckedChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void barackObama_CheckedChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void johnKennedy_CheckedChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void williamMckinley_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ronaldReagan_CheckedChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void dwightEisenhower_CheckedChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void martinVanburen_CheckedChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void georgeWashington_CheckedChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void johnAdams_CheckedChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void theodoreRoosevelt_CheckedChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void thomasJefferson_CheckedChanged(object sender, EventArgs e)
+        {
+           
+        }
+        //CODE JAIL CODE JAIL CODE JAIL
+        private void FranklinRoosevelt__CheckedChanged(object sender, EventArgs e)
+        {
+            if (franklinRoosevelt.Checked)
+            {
+                UpdatePresidentImageAndPage("Franklin D. Roosevelt");
+            }
+        }
+
+        private void BenjaminHarrison__CheckedChanged(object sender, EventArgs e)
         {
             if (benjaminHarrison.Checked)
             {
@@ -112,74 +329,118 @@ namespace Presidents
             }
         }
 
-        private void williamClinton_CheckedChanged(object sender, EventArgs e)
+        private void WilliamClinton__CheckedChanged(object sender, EventArgs e)
         {
-            UpdatePresidentImageAndPage("William J. Clinton");
+            if (williamClinton.Checked)
+            {
+                UpdatePresidentImageAndPage("William J. Clinton");
+            }
+            
         }
 
-        private void jamesBuchanan_CheckedChanged(object sender, EventArgs e)
+        private void JamesBuchanan__CheckedChanged(object sender, EventArgs e)
         {
-            UpdatePresidentImageAndPage("James Buchanan");
+            if (jamesBuchanan.Checked)
+            {
+                UpdatePresidentImageAndPage("James Buchanan");
+            }
         }
 
-        private void franklinPierce_CheckedChanged(object sender, EventArgs e)
+        private void FranklinPierce__CheckedChanged(object sender, EventArgs e)
         {
-            UpdatePresidentImageAndPage("Franklin Pierce");
+            if (franklinPierce.Checked)
+            {
+                UpdatePresidentImageAndPage("Franklin Pierce");
+            }
         }
 
-        private void georgeBush_CheckedChanged(object sender, EventArgs e)
+        private void GeorgeBush__CheckedChanged(object sender, EventArgs e)
         {
-            UpdatePresidentImageAndPage("George W. Bush");
+            if (georgeBush.Checked)
+            {
+                UpdatePresidentImageAndPage("George W. Bush");
+            }
         }
 
-        private void barackObama_CheckedChanged(object sender, EventArgs e)
+        private void BarackObama__CheckedChanged(object sender, EventArgs e)
         {
-            UpdatePresidentImageAndPage("Barack Obama");
+            if (barackObama.Checked)
+            {
+                UpdatePresidentImageAndPage("Barack Obama");
+            }
         }
 
-        private void johnKennedy_CheckedChanged(object sender, EventArgs e)
+        private void JohnKennedy__CheckedChanged(object sender, EventArgs e)
         {
-            UpdatePresidentImageAndPage("John F. Kennedy");
+            if (johnKennedy.Checked)
+            {
+                UpdatePresidentImageAndPage("John F. Kennedy");
+            }
         }
 
-        private void williamMckinley_CheckedChanged(object sender, EventArgs e)
+        private void WilliamMckinley__CheckedChanged(object sender, EventArgs e)
         {
-            UpdatePresidentImageAndPage("William McKinley");
+
+            if (williamMckinley.Checked)
+            {
+                UpdatePresidentImageAndPage("William McKinley");
+            }
         }
 
-        private void ronaldReagan_CheckedChanged(object sender, EventArgs e)
+        private void RonaldReagan__CheckedChanged(object sender, EventArgs e)
         {
-            UpdatePresidentImageAndPage("Ronald Reagan");
+            if (ronaldReagan.Checked)
+            {
+                UpdatePresidentImageAndPage("Ronald Reagan");
+            }
         }
 
-        private void dwightEisenhower_CheckedChanged(object sender, EventArgs e)
+        private void DwightEisenhower__CheckedChanged(object sender, EventArgs e)
         {
-            UpdatePresidentImageAndPage("Dwight D. Eisenhower");
+            if (dwightEisenhower.Checked)
+            {
+                UpdatePresidentImageAndPage("Dwight D. Eisenhower");
+            }
         }
 
-        private void martinVanburen_CheckedChanged(object sender, EventArgs e)
+        private void MartinVanburen__CheckedChanged(object sender, EventArgs e)
         {
-            UpdatePresidentImageAndPage("Martin Van Buren");
+            if (martinVanburen.Checked)
+            {
+                UpdatePresidentImageAndPage("Martin Van Buren");
+            }
         }
 
-        private void georgeWashington_CheckedChanged(object sender, EventArgs e)
+        private void GeorgeWashington__CheckedChanged(object sender, EventArgs e)
         {
-            UpdatePresidentImageAndPage("George Washington");
+            if (georgeWashington.Checked)
+            {
+                UpdatePresidentImageAndPage("George Washington");
+            }
         }
 
-        private void johnAdams_CheckedChanged(object sender, EventArgs e)
+        private void JohnAdams__CheckedChanged(object sender, EventArgs e)
         {
-            UpdatePresidentImageAndPage("John Adams");
+            if (johnAdams.Checked)
+            {
+                UpdatePresidentImageAndPage("John Adams");
+            }
         }
 
-        private void theodoreRoosevelt_CheckedChanged(object sender, EventArgs e)
+        private void TheodoreRoosevelt__CheckedChanged(object sender, EventArgs e)
         {
-            UpdatePresidentImageAndPage("Theodore Roosevelt");
+            if (theodoreRoosevelt.Checked)
+            {
+                UpdatePresidentImageAndPage("Theodore Roosevelt");
+            }
         }
 
-        private void thomasJefferson_CheckedChanged(object sender, EventArgs e)
+        private void ThomasJefferson__CheckedChanged(object sender, EventArgs e)
         {
-            UpdatePresidentImageAndPage("Thomas Jefferson");
+            if (thomasJefferson.Checked)
+            {
+                UpdatePresidentImageAndPage("Thomas Jefferson");
+            }
         }
 
         private void harrisonTextBox_MouseEnter(object sender, EventArgs e)
@@ -498,7 +759,7 @@ namespace Presidents
 
             return presidentNumbers[presidentIndex];
         }
-        private void allRadioButton_CheckedChanged(object sender, EventArgs e)
+        private void AllRadioButton__CheckedChanged(object sender, EventArgs e)
         {
             if (allradioButton.Checked)
             {
@@ -508,6 +769,10 @@ namespace Presidents
 
         private void democratRadioButton_CheckedChanged(object sender, EventArgs e)
         {
+           
+        }
+        private void DemocratRadioButton__CheckedChanged(object sender, EventArgs e)
+        {
             if (democratRadioButton.Checked)
             {
                 FilterPresidentsByParty("Democrat");
@@ -515,6 +780,10 @@ namespace Presidents
         }
 
         private void republicanRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+           
+        }
+        private void RepublicanRadioButton__CheckedChanged(object sender, EventArgs e)
         {
             if (republicanRadioButton.Checked)
             {
@@ -524,13 +793,21 @@ namespace Presidents
 
         private void demorepRadioButton_CheckedChanged(object sender, EventArgs e)
         {
+            
+        }
+
+        private void DemorepRadioButton__CheckedChanged(object sender, EventArgs e)
+        {
             if (demorepRadioButton.Checked)
             {
                 FilterPresidentsByParty("Democratic-Republican");
             }
         }
-
         private void federalistRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            
+        }
+        private void FederalistRadioButton__CheckedChanged(object sender, EventArgs e)
         {
             if (federalistRadioButton.Checked)
             {
@@ -557,13 +834,13 @@ namespace Presidents
             // Iterate through all Controls on the form
             foreach (Control control in Controls)
             {
-                if (control is RadioButton presidentRadioButton && presidentRadioButton.Tag != null)
+                if (control is RadioButton presidentRadioButton)
                 {
                     string presidentName = presidentRadioButton.Text;
 
                     // Find the associated party for the current president
-                    bool showPresident = presidentParties.TryGetValue(presidentName, out string presidentParty) &&
-                                        (party.Equals("All", StringComparison.OrdinalIgnoreCase) || presidentParty.Equals(party, StringComparison.OrdinalIgnoreCase));
+                    bool showPresident = (party == "All") || presidentParties[presidentName] == party;
+                                        
 
                     // Set the visibility of the associated RadioButton based on the filter
                     presidentRadioButton.Visible = showPresident;
@@ -579,18 +856,18 @@ namespace Presidents
         private Dictionary<string, string> presidentParties = new Dictionary<string, string>
         {
     { "Benjamin Harrison", "Republican" },
-    { "Franklin D. Roosevelt", "Democrat" },
-    { "William J. Clinton", "Democrat" },
+    { "Franklin D Roosevelt", "Democrat" },
+    { "William J Clinton", "Democrat" },
     { "James Buchanan", "Democrat" },
     { "Franklin Pierce", "Democrat" },
-    { "George W. Bush", "Republican" },
+    { "George W Bush", "Republican" },
     { "Barack Obama", "Democrat" },
-    { "John F. Kennedy", "Democrat" },
+    { "John F Kennedy", "Democrat" },
     { "William McKinley", "Republican" },
     { "Ronald Reagan", "Republican" },
-    { "Dwight D. Eisenhower", "Republican" },
-    { "Martin Van Buren", "Democrat" },
-    { "George Washington", "None" },
+    { "Dwight D Eisenhower", "Republican" },
+    { "Martin VanBuren", "Democrat" },
+    { "George Washington", "Federalist" },
     { "John Adams", "Federalist" },
     { "Theodore Roosevelt", "Republican" },
     { "Thomas Jefferson", "Democratic-Republican" },
@@ -598,8 +875,7 @@ namespace Presidents
 
         private void fireworksButton_Click(object sender, EventArgs e)
         {
-            // Change the web browser to the fireworks image URL
-            webBrowser.Navigate("https://media1.giphy.com/media/MViYNpI0wx69zX7j7w/giphy.gif?cid=ecf05e47vhdd9p64ir3oinyg514nocd2wdevyd2mp3eaizwx&ep=v1_gifs_search&rid=giphy.gif&ct=g");
+         
         }
 
         private void groupBox1_Enter_1(object sender, EventArgs e)
