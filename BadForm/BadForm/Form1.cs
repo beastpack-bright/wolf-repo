@@ -51,6 +51,7 @@ namespace BadForm
             listButton.Click += ListButton__Click;
             yesRadioButton.CheckedChanged += codeLanguage_CheckedChanged;
             noRadioButton.CheckedChanged += codeLanguage_CheckedChanged;
+            generateDino.Click += GenerateDino__Click;
             // Initialize the penguin timer
             InitializePenguinTimer();
 
@@ -232,7 +233,7 @@ namespace BadForm
             this.BackColor = Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));
         }
 
-        private void generateDino_Click(object sender, EventArgs e)
+        private void GenerateDino__Click(object sender, EventArgs e)
         {
             
             generateDinoButtonXOffset = (generateDinoButtonXOffset - 1) % this.Width;
@@ -435,6 +436,11 @@ namespace BadForm
 
             // Show Form3
             form3.Show();
+        }
+
+        private void toolStripProgressBar1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

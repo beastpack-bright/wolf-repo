@@ -61,7 +61,7 @@
             this.generateDino.TabIndex = 0;
             this.generateDino.Text = "Generate Dinosaur";
             this.generateDino.UseVisualStyleBackColor = true;
-            this.generateDino.Click += new System.EventHandler(this.generateDino_Click);
+            this.generateDino.Click += new System.EventHandler(this.GenerateDino__Click);
             // 
             // dinosaurImage
             // 
@@ -222,8 +222,12 @@
             // 
             // toolStripProgressBar1
             // 
+            this.toolStripProgressBar1.BackColor = System.Drawing.Color.Fuchsia;
+            this.toolStripProgressBar1.ForeColor = System.Drawing.Color.Salmon;
+            this.toolStripProgressBar1.Maximum = 240;
             this.toolStripProgressBar1.Name = "toolStripProgressBar1";
             this.toolStripProgressBar1.Size = new System.Drawing.Size(800, 32);
+            this.toolStripProgressBar1.Click += new System.EventHandler(this.toolStripProgressBar1_Click);
             // 
             // Form1
             // 

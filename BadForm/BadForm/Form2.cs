@@ -12,6 +12,7 @@ namespace BadForm
         {
             InitializeComponent();
             InitializeMouseFollowerPictureBox();
+            penguinMove.MouseMove += Form2_MouseMove;
         }
 
         private void InitializeMouseFollowerPictureBox()
