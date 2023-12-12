@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
-
+ 
 namespace BadForm
 {
     public partial class Form1 : Form
