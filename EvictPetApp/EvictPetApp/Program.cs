@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Timers;
-
+//I will be mostly commenting new lines, since many of the lines are from the original PetApp
 interface IPet
 {
     void Eat();
@@ -80,14 +80,16 @@ class Dog : Pet, IDog
         Console.WriteLine($"{Name}: Whimper, whimper, no vet!");
     }
 
+    //Evicting the cat
     public static void EvictCat(object source, ElapsedEventArgs e)
     {
+        //Debug to see if its being called 
         Console.WriteLine("EvictCat method called!");
-
+        //Checking if there's enough pets to even evict one
         if (Program.pets.Count > 0)
         {
             Console.WriteLine($"Number of pets: {Program.pets.Count}");
-
+            //Checking if there's a dog and a cat
             List<IDog> dogs = Program.pets.OfType<IDog>().ToList();
             List<ICat> cats = Program.pets.OfType<ICat>().ToList();
 
@@ -102,7 +104,7 @@ class Dog : Pet, IDog
                 firstDog.Play(); //Checking if play is invoked
 
                 firstCat.Play(); 
-
+                //bye bye cat :( Evict line and first cat removed
                 Console.WriteLine($"{firstDog.Name}: You will be a homeless furball, {firstCat.Name}");
                 firstCat.Evicted();
 
@@ -110,12 +112,12 @@ class Dog : Pet, IDog
                 Program.pets.Remove(firstCat);
             }
             else
-            {
+            {//No animals
                 Console.WriteLine("No dog or cat found.");
             }
         }
         else
-        {
+        { //No animals
             Console.WriteLine("No pets available.");
         }
     }
@@ -165,7 +167,7 @@ class Pets : IEnumerable<IPet> //IEnumerable added for list gathering
     }
 
     public int Count
-    {
+    {//animals in list
         get { return petList.Count; }
     }
 
@@ -182,11 +184,12 @@ class Pets : IEnumerable<IPet> //IEnumerable added for list gathering
     public void RemoveAt(int petEl)
     {
         if (petEl >= 0 && petEl < petList.Count)
-        {
+        { //helping to remove animals
             petList.RemoveAt(petEl);
         }
     }
 
+    //more counting and making sure we have values set
     public IPet this[int petEl]
     {
         get
@@ -227,7 +230,7 @@ class Program
 
         Random rand = new Random(); //Timer addition
         Timer myTimer = new Timer(20000);
-        myTimer.Elapsed += new ElapsedEventHandler(Dog.EvictCat);
+        myTimer.Elapsed += new ElapsedEventHandler(Dog.EvictCat); //timer to evict the cat
         myTimer.Start();
 
         for (int i = 0; i < 50; i++)
