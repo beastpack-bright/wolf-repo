@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ColorsGraphDepth
 {
@@ -47,6 +44,7 @@ namespace ColorsGraphDepth
             new List<int> { 4, 6 },    // Yellow
             new List<int> { 6 }     // Green
         };
+
         //keep track of visited 
         static bool[] visited = new bool[adjacencyMatrix.GetLength(0)];
 
@@ -56,6 +54,8 @@ namespace ColorsGraphDepth
 
             // start from red at index 2
             DFS(2);
+
+           
 
             Console.ReadLine(); // pause view output
         }
@@ -75,10 +75,3 @@ namespace ColorsGraphDepth
         }
     }
 }
-
-
-
-
-
-
-
