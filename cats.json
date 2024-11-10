@@ -180,8 +180,6 @@
         "shunned": 0,
         "current_apprentice": [],
         "former_apprentices": [
-            "52",
-            "63"
         ],
         "df": false,
         "outside": false,
@@ -392,8 +390,7 @@
         "current_apprentice": [],
         "former_apprentices": [
             "40",
-            "42",
-            "64"
+            "42"
         ],
         "df": false,
         "outside": false,
@@ -560,7 +557,6 @@
         "patrol_with_mentor": 0,
         "mate": [],
         "previous_mates": [
-            "27"
         ],
         "dead": false,
         "paralyzed": false,
@@ -1028,7 +1024,7 @@
         "shunned": 0,
         "current_apprentice": [],
         "former_apprentices": [
-            "10"
+            
         ],
         "df": false,
         "outside": false,
@@ -1301,7 +1297,6 @@
         "patrol_with_mentor": 0,
         "mate": [],
         "previous_mates": [
-            "13"
         ],
         "dead": false,
         "paralyzed": false,
@@ -1346,7 +1341,6 @@
         "shunned": 0,
         "current_apprentice": [],
         "former_apprentices": [
-            "59"
         ],
         "df": false,
         "outside": false,
@@ -1562,7 +1556,6 @@
         "shunned": 0,
         "current_apprentice": [],
         "former_apprentices": [
-            "17"
         ],
         "df": false,
         "outside": false,
@@ -1990,7 +1983,6 @@
         "shunned": false,
         "current_apprentice": [],
         "former_apprentices": [
-            "60"
         ],
         "df": false,
         "outside": false,
@@ -2415,8 +2407,8 @@
         "shunned": false,
         "current_apprentice": [],
         "former_apprentices": [
-            "4",
-            "25"
+            "4"
+
         ],
         "df": false,
         "outside": false,
@@ -3181,7 +3173,6 @@
         ],
         "mentor": null,
         "former_mentor": [
-            "12"
         ],
         "patrol_with_mentor": 0,
         "mate": [],
@@ -3225,7 +3216,6 @@
         "dead_moons": 0,
         "current_apprentice": [],
         "former_apprentices": [
-            "75"
         ],
         "df": false,
         "outside": false,
@@ -3285,7 +3275,7 @@
         ],
         "mentor": null,
         "former_mentor": [
-            "10"
+            
         ],
         "patrol_with_mentor": 0,
         "mate": [],
@@ -3632,8 +3622,6 @@
         "dead_moons": 0,
         "current_apprentice": [],
         "former_apprentices": [
-            "58",
-            "76"
         ],
         "df": false,
         "outside": false,
@@ -3795,7 +3783,6 @@
         "adoptive_parents": [],
         "mentor": null,
         "former_mentor": [
-            "13"
         ],
         "patrol_with_mentor": 0,
         "mate": [],
@@ -4274,7 +4261,7 @@
         "former_apprentices": [],
         "df": false,
         "outside": false,
-        "faded_offspring": ["71", "72"],
+        "faded_offspring": [],
         "opacity": 100,
         "prevent_fading": false,
         "favourite": false
